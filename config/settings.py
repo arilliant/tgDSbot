@@ -6,7 +6,9 @@ load_dotenv()
 class Settings:
     OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
     BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-  # MODEL = "deepseek/deepseek-r1"
+  # MODEL = "google/gemini-2.5-pro-exp-03-25:free" # Надо оплатить от 10 кредитов OpenRouter
+  # MODEL = "qwen/qwen2.5-vl-32b-instruct:free"
+  # MODEL = "ddeepseek/deepseek-r1:free"
     MODEL = "deepseek/deepseek-chat-v3-0324:free"
     MAX_HISTORY_LENGTH = 20
 
