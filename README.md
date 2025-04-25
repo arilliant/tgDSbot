@@ -45,7 +45,7 @@ tgDSbot/
 
 1. Клонировать репозиторий:
    ```bash
-   git clone https://github.com/yourusername/tgDSbot.git
+   git clone https://github.com/arilliant/tgDSbot.git
    cd tgDSbot
    ```
 
