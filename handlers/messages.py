@@ -15,4 +15,4 @@ async def handle_message(message: Message) -> None:
     except Exception as e:
         from config.settings import logger
         logger.error(f"Error processing message: {e}", exc_info=True)
-        await message.answer("⚠️ Произошла ошибка при обработке запроса")
+        await message.answer("⚠️ Произошла ошибка при обработке запроса", parse_mode="Markdown")

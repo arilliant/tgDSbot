@@ -40,7 +40,7 @@ class OpenRouterService:
         full_response = ""
         current_part = 1
         parts = []  # Список для хранения частей длинного ответа
-        response_message = await message.answer("⏳ Генерирую ответ...")
+        response_message = await message.answer("⏳ Генерирую ответ...", parse_mode="Markdown")
         last_update_time = asyncio.get_event_loop().time()
         last_update_length = 0
         buffer = ""
@@ -81,14 +81,14 @@ class OpenRouterService:
                                     
                                     # Проверка длины текущего буфера
                                     if len(buffer) > MAX_MSG_LENGTH:
-                                        # Сохраняем текущую часть и начинаем новую
+                                        # Cохраняем текущую часть и начинаем новую
                                         parts.append(buffer)
                                         # Важно проверить не пустой ли буфер перед обновлением
                                         if buffer:
-                                            await response_message.edit_text(f"{buffer}\n\nЧасть {current_part}/{current_part}...")
+                                            await response_message.edit_text(f"{buffer}\n\nЧасть {current_part}/{current_part}...", parse_mode="Markdown")
                                         
                                         # Отправляем новое сообщение для продолжения ответа
-                                        response_message = await message.answer("⏳ Продолжение ответа...")
+                                        response_message = await message.answer("⏳ Продолжение ответа...", parse_mode="Markdown")
                                         buffer = ""
                                         last_update_length = 0
                                         current_part += 1
@@ -96,9 +96,9 @@ class OpenRouterService:
                                     # Обновляем сообщение по расписанию или при достаточном количестве нового контента
                                     if (enough_time_passed or enough_new_content) and buffer:  # Проверяем что буфер не пустой
                                         if current_part > 1:
-                                            await response_message.edit_text(f"{buffer}\n\nЧасть {current_part}/{current_part}...")
+                                            await response_message.edit_text(f"{buffer}\n\nЧасть {current_part}/{current_part}...", parse_mode="Markdown")
                                         else:
-                                            await response_message.edit_text(buffer)
+                                            await response_message.edit_text(buffer, parse_mode="Markdown")
                                         last_update_time = current_time
                                         last_update_length = len(buffer)
                                     
@@ -111,9 +111,9 @@ class OpenRouterService:
                     if buffer:  # Убедимся, что буфер не пустой
                         if current_part > 1:
                             parts.append(buffer)
-                            await response_message.edit_text(f"{buffer}\n\nЧасть {current_part}/{current_part}")
+                            await response_message.edit_text(f"{buffer}\n\nЧасть {current_part}/{current_part}", parse_mode="Markdown")
                         else:
-                            await response_message.edit_text(buffer)
+                            await response_message.edit_text(buffer, parse_mode="Markdown")
                     else:
                         # Если буфер пустой, используем запасное сообщение
                         await response_message.edit_text("🤷 Не удалось сгенерировать ответ")

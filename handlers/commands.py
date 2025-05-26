@@ -15,7 +15,7 @@ async def start_command(message: Message) -> None:
         "Используй кнопку ниже или команду /clear чтобы очистить контекст разговора\n\n"
         f"История контекста - {settings.MAX_HISTORY_LENGTH} сообщений",
         reply_markup=get_main_keyboard(),
-        parse_mode="HTML"
+        parse_mode="Markdown"
     )
 
 @router.message(Command("clear"))
